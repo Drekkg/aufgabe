@@ -60,7 +60,7 @@ const DUMMY_DATA = [
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler} />
       </div>
       <div>
-        <Aufträge items={auftragsData}/>
+        <Aufträge items={auftragsData} />
       </div>
     </div>
   );
