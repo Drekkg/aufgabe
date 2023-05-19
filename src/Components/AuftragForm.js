@@ -7,6 +7,7 @@ const [enteredKunde, setEnteredKunde] = useState('');
 const [enteredProjekt, setEnteredProjekt] = useState('');
 const [enteredDatum, setEnteredDatum] = useState('');
 const [enteredSachbearbeiter, setEnteredSachbearbeiter] = useState('');
+const [enteredAuftragNummer, setEnteredAuftragNummer] = useState(''); 
 
 const kundeChangeHandler = (event) => {
   setEnteredKunde(event.target.value);
@@ -21,6 +22,10 @@ const sachbearbeiterChangeHandler = (event) => {
   setEnteredSachbearbeiter(event.target.value);
 }
 
+const auftragNummerHandler =(event) => {
+  setEnteredAuftragNummer(event.target.value);
+}
+
 const submitHandler = (event) => {
   event.preventDefault();
   const enteredAuftragData = {
@@ -28,13 +33,15 @@ const submitHandler = (event) => {
     projekt: enteredProjekt,
     datum: enteredDatum,
     sachbearbeiter: enteredSachbearbeiter,
-    content: ["Christine"]
+    content: enteredAuftragNummer
+    
   };
   props.onSaveAuftragData(enteredAuftragData);
   setEnteredProjekt('');
   setEnteredDatum('');
   setEnteredSachbearbeiter('');
   setEnteredKunde('');
+  setEnteredAuftragNummer('');
   
 }
 
@@ -60,7 +67,14 @@ const submitHandler = (event) => {
           <label>Sachbearbeiter</label>
           <input type="text" onChange={sachbearbeiterChangeHandler}/>
         </div>
+
+        <div className="new-auftrag__control label">
+          <label>Auftrag Nummmer:</label>
+          <input type="text" onChange={auftragNummerHandler}/>
+        </div>
+
       </div>
+      
 
       <div>
         <button className="buttonStyle" type="submit">Erstellen</button>

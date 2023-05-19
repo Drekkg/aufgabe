@@ -4,7 +4,7 @@
 }
 
 .App {
-  
+  background-color: rgb(191, 193, 196);
   width: 40rem;
   margin: auto;
   display: flex;

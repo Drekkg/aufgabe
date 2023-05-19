@@ -3,23 +3,23 @@ import "./Aufträge.css";
 import AuftragContent from "./AuftragContent";
 
 function Aufträge(props) {
-  const [dispAufträgeContent, setDispAufträgeContent] = useState(false);
+  const [dispAufträgeContent, setDispAufträgeContent] = useState();
+  const [dispContentAuftrag, setDispContentAuftrag] = useState(true);
+  const [contentId, setContentId] = useState({});
+ 
+  
+  
 
-  // function dispContent(id) {
-  //   setDispAufträgeContent(
-  //     props.items.map((data) => 
-  //       data.id === id ? { ...data, content: "dddd" }: data)
-  //   );
-  //     console.log(dispAufträgeContent)
-  //     }
   function dispContent(id) {
-    setDispAufträgeContent(!dispAufträgeContent);
-    let data = props.items.findIndex((data) => data.id === id);
-    let newData = props.items;
-     newData[data] = {...newData[data], content: "Lawrence"};
-    console.log(newData[data]);
+    setDispAufträgeContent(id);
+    setDispContentAuftrag(!dispContentAuftrag);
+    
+   
   }
 
+
+
+  // console.log("items props" + JSON.stringify(props.items))
   return (
     <div>
       <ul>
@@ -27,15 +27,26 @@ function Aufträge(props) {
           <li className="auftragBox" key={data.id}>
             <div>{data.datum}</div>
             <div key={data.id} onClick={() => dispContent(data.id)}>
-              Kunde: <b>{data.kunde}</b>
+              <b> Kunde: </b>
+              {data.kunde}
             </div>
-            <div>Aufgabe: {data.projekt}</div>
+            <div>
+              <b>Aufgabe: </b>
+              {data.projekt}
+            </div>
             <div>{data.sachbearbeiter}</div>
-            <div>{data.content}</div>
-            
+            <div>
+              <b>Auftragsnr: </b>
+              {data.content}
+            </div>
+
+            <div>
+              {!dispContentAuftrag && dispAufträgeContent === data.id && (
+                <AuftragContent user={data.sachbearbeiter} storageId={data.id}/>
+              )}
+            </div> 
           </li>
-       
-          ))}
+        ))}
       </ul>
     </div>
   );

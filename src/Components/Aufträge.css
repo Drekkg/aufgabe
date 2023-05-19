@@ -1,10 +1,13 @@
 .auftragBox {
+  background-color:  rgb(254, 255, 255);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgb(254, 255, 255);
   list-style: none;
   padding: 1rem;
   width: 50rem;
   margin: auto;
-  display: flex;
-  justify-content: space-between;
   border: 2px solid;
   box-shadow: 0px 5px #76c754;
   border-radius: 20px;

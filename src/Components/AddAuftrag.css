@@ -1,29 +1,27 @@
 .buttonBox {
-  
-    width: 50rem;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border: 2px solid;
-    box-shadow:  0px 2px;
-    border-radius: 20px;
-    margin-top: .6rem;
-    
-  }
+  background-color:   rgb(191, 193, 196);
+  width: 50rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 2px solid;
+  box-shadow: 0px 2px;
+  border-radius: 20px;
+  margin-top: 0.6rem;
+}
 
-  .buttonStyle {
-    width: 10rem;
-    margin: 1rem;
-    border-radius: 20px;
-    border: 2px solid;
-    box-shadow:  0px 2px;
-    background-color: #f5f5f5;
-    color: black;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
+.buttonStyle {
+  width: 10rem;
+  margin: 1rem;
+  border-radius: 20px;
+  border: 2px solid;
+  box-shadow: 0px 2px;
+  background-color: #f5f5f5;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
