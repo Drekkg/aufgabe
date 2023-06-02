@@ -15,20 +15,29 @@ function AddAuftrag(props) {
   const onSaveAuftragDataHandler = (enteredAuftragData) => {
     const auftragData = {
       ...enteredAuftragData,
-      id: Math.random().toString()
+      id: Math.random().toString(),
     };
     props.onAddAuftrag(auftragData);
-    setNewAuftragForm(false);
-  }; 
 
+    let aufgabeMulti = JSON.parse(localStorage.getItem("aufgabe")) || [];
+    aufgabeMulti.push(auftragData);
+    localStorage.setItem("aufgabe", JSON.stringify(aufgabeMulti));
+   
+
+    let contentObjMulti = JSON.parse(localStorage.getItem("contentObj44")) || {};
+    contentObjMulti[auftragData.id] = [];
+    localStorage.setItem("contentObj44", JSON.stringify(contentObjMulti));
+    setNewAuftragForm(false);
+  };
+    
   return (
     <div className="buttonBox">
-      
-
       {newAuftragForm && (
         <div>
-  <AuftragForm onSaveAuftragData={onSaveAuftragDataHandler}/>
-          <button className="buttonStyle" onClick={dispCancelHandler}>cancel</button>
+          <AuftragForm onSaveAuftragData={onSaveAuftragDataHandler} />
+          <button className="buttonStyle" onClick={dispCancelHandler}>
+            Cancel
+          </button>
         </div>
       )}
       {!newAuftragForm && (

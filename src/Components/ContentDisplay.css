@@ -2,16 +2,15 @@
     
     list-style: none;
     border-top: 3rem;
-   
     flex-direction: row;
-    align-self: center;
-    /* color: rgb(191, 193, 196); */
+    /* align-self: center; */
+    
 }
 
 .content__container__color {
     margin-top: .5rem;
     width: 41.6rem;
-   
+    overflow-wrap: break-word;
     padding: .4rem;
     background-color: rgba(191, 200, 206, 0.405);
 }

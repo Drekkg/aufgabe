@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, Fragment } from "react";
 import "./AuftragForm.css";
 
 function AuftragForm(props) {
@@ -16,7 +16,9 @@ const projektChangeHandler = (event) => {
   setEnteredProjekt(event.target.value);
 }
 const datumChangeHandler = (event) => {
-  setEnteredDatum(event.target.value);
+ var datum = event.target.value.replace(/\-/g, '/');
+ 
+  setEnteredDatum(datum);
 }
 const sachbearbeiterChangeHandler = (event) => {
   setEnteredSachbearbeiter(event.target.value);
@@ -36,6 +38,7 @@ const submitHandler = (event) => {
     content: enteredAuftragNummer
     
   };
+
   props.onSaveAuftragData(enteredAuftragData);
   setEnteredProjekt('');
   setEnteredDatum('');
