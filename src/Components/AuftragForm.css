@@ -45,8 +45,13 @@
 @media (max-width: 600px) {
   .new-auftrag__controls {
     font-size: 2rem;
+    
+    
+    
   }
   .buttonStyle {
-    font-size: 1.7rem;
+    font-size: 2rem;
+    width: 70%;
+    
   }
 }

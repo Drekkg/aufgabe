@@ -1,28 +1,87 @@
+
+
+
 .auftragBox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  /* display: flex;
+  flex-wrap: wrap; */
+  /* justify-content: space-around; */
   background-color: rgb(254, 255, 255);
   list-style: none;
   padding: 1rem;
-  width: 50rem;
+  width: 48rem;
   margin: auto;
   border: 2px solid;
-  box-shadow: 0px 5px #5499c7;
+  box-shadow: 5px 8px 4px #000000;
   border-radius: 20px;
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
+ 
+}
+.auftragBox__highPriority {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+  background-color: rgb(254, 255, 255);
+  list-style: none;
+  padding: 1rem;
+  width: 48rem;
+  margin: auto;
+  border: 2px solid;
+  box-shadow: 5px 8px 4px #000000;
+  border-radius: 20px;
+  margin-top: 0.6rem;
+  
 }
 
-@media(max-width: 600px) {
+.kundeButton {
+margin-left: 5rem;
+  font-size: 1rem;
+}
+.kundeButton_highPriority {
+ margin-left: 5rem;
+  font-size: 1rem;
+}
+.highPriority {
+  text-align: center;
+  color: #ff0000;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: .8rem;
+}
+
+
+  
+  @media(max-width: 600px) {
   .auftragBox {
     clear:both;
     flex-direction: column;
+    font-size: 2.2rem;
+    margin-left: -2rem;   
+     
+  }
+
+  .auftragBox__highPriority {
+    clear:both;
+    flex-direction: column;
     font-size: 2rem;
-    margin-left: 0;
+    margin-left: -2rem;   
+  }
+
+
+  .kundeButton {
+    font-size: 2rem;
+    margin: 0;
     
   }
-  .kundeButton {
-    font-size: 1.8rem;
+  .kundeButton_highPriority {
+    font-size: 2.2rem;
+    margin: 0;
+    
+  }
+  .highPriority {
+   
+    font-size: 2rem;
+    
   }
 
 }

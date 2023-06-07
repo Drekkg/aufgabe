@@ -6,7 +6,6 @@ function Aufträge(props) {
   const [dispAufträgeContent, setDispAufträgeContent] = useState();
   const [dispContentAuftrag, setDispContentAuftrag] = useState(true);
   const [contentDataHandler, setContentDataHandler] = useState();
-  const [deleteHandler, setDeleteHandler] = useState();
 
   // if(props.items !== null) {
   //   setDisplayHandler(false);
@@ -21,27 +20,52 @@ function Aufträge(props) {
     setDispContentAuftrag(!dispContentAuftrag);
     props.selectedId(id);
   }
-  
+  const highPriority = (
+    <b>
+      <div className="highPriority">Priorität: Hoch</div>
+    </b>
+  );
+
   return (
     <div>
       <ul>
         {props.items.map((data) => (
-          <li className="auftragBox" key={data.id}>
-            <div>{data.datum}</div>
-            <button className="kundeButton" key={data.id} onClick={() => dispContent(data.id)}>
-              <b> Kunde: </b>
-              {data.kunde}
-            </button>
+          <li
+            className={
+              data.priority ? "auftragBox__highPriority" : "auftragBox"
+            }
+            key={data.id}
+          >
+            <div>
+              <b></b>
+              {data.priority ? highPriority : null}
+            </div>
+
+            <div>
+              {data.datum}
+              <button
+                className={
+                  data.priority ? "kundeButton_highPriority" : "kundeButton"
+                }
+                key={data.id}
+                onClick={() => dispContent(data.id)}
+              >
+                <b> Kunde: </b>
+                {data.kunde}
+              </button>
+            </div>
             <div>
               <b>Aufgabe: </b>
               {data.projekt}
+
+              <div>
+                <b>{data.sachbearbeiter}</b>
+              </div>
+              <div>
+                <b>Auftragsnr: </b>
+                {data.content}
+              </div>
             </div>
-            <div>{data.sachbearbeiter}</div>
-            <div>
-              <b>Auftragsnr: </b>
-              {data.content}
-            </div>
-            
 
             <div>
               {!dispContentAuftrag && dispAufträgeContent === data.id && (

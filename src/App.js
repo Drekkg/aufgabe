@@ -41,18 +41,14 @@ function App() {
   ];
   var contentObj = JSON.parse(localStorage.getItem("contentObj44")) || {};
 
-
   let aufgabeContententId = "";
-
-  
 
   const [auftragsData, setAuftragsData] = useState(
     JSON.parse(localStorage.getItem("aufgabe")) || []
   );
- 
 
   const [newContentObj, setNewContentObj] = useState(contentObj);
- 
+
   const onAddAuftragDataHandler = (auftragData) => {
     setNewContentObj((prev) => {
       return { ...prev, [auftragData.id]: [] };
@@ -75,30 +71,26 @@ function App() {
     localStorage.setItem("contentObj44", JSON.stringify(deleteContentArray));
     setNewContentObj(deleteContentArray);
     setAuftragsData(deleteFromArray);
-    
-  
   }
-
-
 
   const onSaveContentObjHandler = (contentArray) => {
     newContentObj[aufgabeContententId].push(contentArray);
-  let ca = JSON.parse(localStorage.getItem("contentObj44"));
-  ca[aufgabeContententId].push(contentArray);
-  localStorage.setItem("contentObj44", JSON.stringify(ca));
+    let ca = JSON.parse(localStorage.getItem("contentObj44"));
+    ca[aufgabeContententId].push(contentArray);
+    localStorage.setItem("contentObj44", JSON.stringify(ca));
   };
   function selectedIdHandler(id) {
     return (aufgabeContententId = id);
   }
-  
+
   return (
     <Fragment>
       <div className="App">
-        {/* <img src={cold_logo} alt="" width="75rem" height="30rem" /> */}
         <h1>Aufgabe Liste</h1>
       </div>
       <div>
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler} />
+      
       </div>
       <div>
         <Aufträge
@@ -108,6 +100,7 @@ function App() {
           enteredContentObj={newContentObj}
           onDelete={onDeleteHandler}
         />
+        
       </div>
     </Fragment>
   );

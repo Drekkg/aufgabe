@@ -20,7 +20,7 @@ function AddAuftrag(props) {
     props.onAddAuftrag(auftragData);
 
     let aufgabeMulti = JSON.parse(localStorage.getItem("aufgabe")) || [];
-    aufgabeMulti.push(auftragData);
+    aufgabeMulti.unshift(auftragData);
     localStorage.setItem("aufgabe", JSON.stringify(aufgabeMulti));
    
 

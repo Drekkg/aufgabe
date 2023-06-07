@@ -7,6 +7,7 @@ function AuftragContent(props) {
   const [enteredContent, setEnteredContent] = useState(
     props.contentObj2[props.storageId]
   );
+ const [deleteHandler, setDeleteHandler] = useState(false);
 
   const onChangeHandler = (event) => {
     setContent(event.target.value);
@@ -47,16 +48,17 @@ function AuftragContent(props) {
   };
 
   function onDelete(id) {
-    if (
-      window.confirm("Sind Sie sicher, dass Sie den Auftrag löschen wollen?")
-    ) {
-      if (
-        window.confirm("Sind Sie wirklich sicher? es ist nicht rückgängig!")
-      ) {
-        props.onDelete(id);
-      }
-    }
+    setDeleteHandler(true);
+    
+  
   }
+  function dispAuftragDelete(delFalse) {
+    setDeleteHandler(delFalse);
+    props.onDelete(props.storageId);
+  }
+function dispAuftragCancel(delFalse) {  
+  setDeleteHandler(delFalse);
+};
 
   console.log("enteredcontent" + props.contentObj2[props.storageId]);
   return (
@@ -64,12 +66,16 @@ function AuftragContent(props) {
       <form onSubmit={submitHandler}>
         <label>
           Arbeit:- <span></span>
-          <input size="80" type="text" onChange={onChangeHandler} />
+          <input size="80" type="text" onChange={onChangeHandler} className="input__align_input" />
         </label>
       </form>
       
       <div>
-        <ContentDisplay items={enteredContent} />
+        <ContentDisplay items={enteredContent} 
+                        deleteModal={deleteHandler}
+                        deleteHandlerDisp={dispAuftragDelete}
+                        cancelHandlerDisp={dispAuftragCancel}
+                        />
       </div>
       <button
         className="deleteButton"

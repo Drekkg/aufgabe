@@ -8,6 +8,7 @@ const [enteredProjekt, setEnteredProjekt] = useState('');
 const [enteredDatum, setEnteredDatum] = useState('');
 const [enteredSachbearbeiter, setEnteredSachbearbeiter] = useState('');
 const [enteredAuftragNummer, setEnteredAuftragNummer] = useState(''); 
+const [enteredPriority, setEnteredPriority] = useState(false);
 
 const kundeChangeHandler = (event) => {
   setEnteredKunde(event.target.value);
@@ -28,14 +29,26 @@ const auftragNummerHandler =(event) => {
   setEnteredAuftragNummer(event.target.value);
 }
 
+const priorityHandler = (event) => {
+  if(event.target.value === "true"){
+    setEnteredPriority(true);
+  }
+}
+
+
+
+
 const submitHandler = (event) => {
   event.preventDefault();
+
   const enteredAuftragData = {
     kunde: enteredKunde,
     projekt: enteredProjekt,
     datum: enteredDatum,
     sachbearbeiter: enteredSachbearbeiter,
-    content: enteredAuftragNummer
+    content: enteredAuftragNummer,
+    priority: enteredPriority,
+  
     
   };
 
@@ -45,6 +58,9 @@ const submitHandler = (event) => {
   setEnteredSachbearbeiter('');
   setEnteredKunde('');
   setEnteredAuftragNummer('');
+  setEnteredPriority(false);
+
+ 
   
 }
 
@@ -53,7 +69,7 @@ const submitHandler = (event) => {
       <div className="new-auftrag__controls">
         <div className="new-auftrag__control label">
           <label>Kunde </label>
-          <input type="text" onChange={kundeChangeHandler}/>
+          <input type="text" size="50" onChange={kundeChangeHandler}/>
         </div>
 
         <div className="new-auftrag__control label">
@@ -74,6 +90,12 @@ const submitHandler = (event) => {
         <div className="new-auftrag__control label">
           <label>Auftrag Nummmer:</label>
           <input type="text" onChange={auftragNummerHandler}/>
+        </div>
+
+        <div>
+          <label>Priorität: Hoch 
+          <input type="checkbox"  value="true" onChange={priorityHandler}/>
+          </label>
         </div>
 
       </div>

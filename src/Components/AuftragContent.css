@@ -6,11 +6,12 @@
   word-wrap: break-word;
 }
 .deleteButton {
-    clear:both;
+  clear: both;
+  background-color: #ff0000;
+  padding: 0.4rem;
   display: inline-block;
-  margin: 1rem 0 0 43rem;
-  font-size: .6rem;
-
+  margin: 1rem 0 0 40rem;
+  font-size: 0.6rem;
 
   border-radius: 6rem;
 }
@@ -18,4 +19,15 @@
   background-color: #fa1c1c;
   border-color: yellow;
   color: white;
+}
+
+@media (max-width: 600px) {
+  .input__align_input {
+    width: 100%;
+    font-size: 2rem;
+  }
+  .deleteButton {
+    margin: 1rem 0 0 37rem;
+    font-size: 1.2rem;
+  }
 }
