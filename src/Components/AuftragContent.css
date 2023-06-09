@@ -10,9 +10,8 @@
   background-color: #ff0000;
   padding: 0.4rem;
   display: inline-block;
-  margin: 1rem 0 0 40rem;
+  margin: 1rem 0 0 0;
   font-size: 0.6rem;
-
   border-radius: 6rem;
 }
 .deleteButton:hover {
@@ -20,14 +19,37 @@
   border-color: yellow;
   color: white;
 }
+.edit_button:hover {
+  background-color: #1c41fa;
+  border-color: yellow;
+  color: white;
+}
+
+.edit_button {
+  clear: both;
+  background-color: #00bfff;
+  padding: 0.4rem;
+  display: inline-block;
+  margin: 1rem .6rem 0 34rem;
+  font-size: 0.6rem;
+  border-radius: 6rem;
+}
+
+
 
 @media (max-width: 600px) {
   .input__align_input {
     width: 100%;
     font-size: 2rem;
   }
-  .deleteButton {
-    margin: 1rem 0 0 37rem;
+  
+  .edit_button {
+    margin: 1rem 0 0 20rem;
     font-size: 1.2rem;
   }
+  .deleteButton {
+    margin: 1rem 0 0 1rem;
+    font-size: 1.2rem;
+  }
+
 }

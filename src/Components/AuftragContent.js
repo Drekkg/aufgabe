@@ -4,10 +4,8 @@ import "./AuftragContent.css";
 
 function AuftragContent(props) {
   const [content, setContent] = useState("");
-  const [enteredContent, setEnteredContent] = useState(
-    props.contentObj2[props.storageId]
-  );
- const [deleteHandler, setDeleteHandler] = useState(false);
+
+  const [deleteHandler, setDeleteHandler] = useState(false);
 
   const onChangeHandler = (event) => {
     setContent(event.target.value);
@@ -49,40 +47,53 @@ function AuftragContent(props) {
 
   function onDelete(id) {
     setDeleteHandler(true);
-    
-  
+  }
+  function clickHandler(content) {
+    console.log(content);
   }
   function dispAuftragDelete(delFalse) {
     setDeleteHandler(delFalse);
     props.onDelete(props.storageId);
   }
-function dispAuftragCancel(delFalse) {  
-  setDeleteHandler(delFalse);
-};
+  function dispAuftragCancel(delFalse) {
+    setDeleteHandler(delFalse);
+  }
 
-  console.log("enteredcontent" + props.contentObj2[props.storageId]);
   return (
     <div className="input__align">
       <form onSubmit={submitHandler}>
         <label>
           Arbeit:- <span></span>
-          <input size="80" type="text" onChange={onChangeHandler} className="input__align_input" />
+          <input
+            size="80"
+            type="text"
+           
+            onChange={onChangeHandler}
+            className="input__align_input"
+          />
         </label>
       </form>
-      
+
       <div>
-        <ContentDisplay items={enteredContent} 
-                        deleteModal={deleteHandler}
-                        deleteHandlerDisp={dispAuftragDelete}
-                        cancelHandlerDisp={dispAuftragCancel}
-                        />
+        <ContentDisplay
+          items={props.contentObj2[props.storageId]}
+          deleteModal={deleteHandler}
+          deleteHandlerDisp={dispAuftragDelete}
+          cancelHandlerDisp={dispAuftragCancel}
+        />
       </div>
       <button
+        className="edit_button"
+        onClick={() => clickHandler(props.storageId)}
+      >
+        Bearbeiten
+      </button>
+      <button
         className="deleteButton"
-        onClick={() => onDelete(props.storageId)}>
+        onClick={() => onDelete(props.storageId)}
+      >
         Auftrag löschen
       </button>
-      
     </div>
   );
 }

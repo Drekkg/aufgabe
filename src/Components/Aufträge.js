@@ -4,13 +4,16 @@ import AuftragContent from "./AuftragContent";
 
 function Aufträge(props) {
   const [dispAufträgeContent, setDispAufträgeContent] = useState();
-  const [dispContentAuftrag, setDispContentAuftrag] = useState(true);
+  const [dispContentAuftrag, setDispContentAuftrag] = useState(false);
   const [contentDataHandler, setContentDataHandler] = useState();
 
   // if(props.items !== null) {
   //   setDisplayHandler(false);
   // }
-
+function contentDisplay(){
+  setDispContentAuftrag(true)
+  console.log("WWWW")
+}
   const contentObjHandler2 = (contentArray) => {
     props.onSaveContentObj(contentArray);
   };
@@ -68,7 +71,7 @@ function Aufträge(props) {
             </div>
 
             <div>
-              {!dispContentAuftrag && dispAufträgeContent === data.id && (
+              {dispContentAuftrag && dispAufträgeContent === data.id && (
                 <AuftragContent
                   contentObjHandler={contentObjHandler2}
                   user={data.sachbearbeiter}
@@ -76,6 +79,7 @@ function Aufträge(props) {
                   dummyContentData={contentDataHandler}
                   contentObj2={props.enteredContentObj}
                   onDelete={props.onDelete}
+                  dispContentHandler={contentDisplay}
                 />
               )}
             </div>

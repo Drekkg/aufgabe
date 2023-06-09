@@ -23,6 +23,16 @@
   width: 20rem;
   max-width: 100%;
 }
+.new-auftrag__control_nummer {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 10px solid #15891d;
+  width: 10rem;
+  max-width: 100%;
+}
+
+
 
 .new-auftrag__actions {
   text-align: right;

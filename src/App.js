@@ -42,6 +42,7 @@ function App() {
   var contentObj = JSON.parse(localStorage.getItem("contentObj44")) || {};
 
   let aufgabeContententId = "";
+ 
 
   const [auftragsData, setAuftragsData] = useState(
     JSON.parse(localStorage.getItem("aufgabe")) || []
@@ -71,6 +72,9 @@ function App() {
     localStorage.setItem("contentObj44", JSON.stringify(deleteContentArray));
     setNewContentObj(deleteContentArray);
     setAuftragsData(deleteFromArray);
+
+    
+
   }
 
   const onSaveContentObjHandler = (contentArray) => {
@@ -99,6 +103,7 @@ function App() {
           selectedId={selectedIdHandler}
           enteredContentObj={newContentObj}
           onDelete={onDeleteHandler}
+          
         />
         
       </div>
