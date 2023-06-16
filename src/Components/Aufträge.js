@@ -12,13 +12,14 @@ function Aufträge(props) {
   // }
 function contentDisplay(){
   setDispContentAuftrag(true)
-  console.log("WWWW")
+  
 }
   const contentObjHandler2 = (contentArray) => {
     props.onSaveContentObj(contentArray);
   };
 
   function dispContent(id) {
+    console.log(id)
     setDispAufträgeContent(id);
     setDispContentAuftrag(!dispContentAuftrag);
     props.selectedId(id);

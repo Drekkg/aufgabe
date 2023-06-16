@@ -3,14 +3,19 @@ import ContentDisplay from "./ContentDisplay";
 import "./AuftragContent.css";
 
 function AuftragContent(props) {
-  const [content, setContent] = useState("");
 
+  const [content, setContent] = useState();
   const [deleteHandler, setDeleteHandler] = useState(false);
+
 
   const onChangeHandler = (event) => {
     setContent(event.target.value);
   };
-
+const edittedContent = (event) => {
+  
+ setContent(event);
+ console.log("content " +content)
+}
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -48,9 +53,7 @@ function AuftragContent(props) {
   function onDelete(id) {
     setDeleteHandler(true);
   }
-  function clickHandler(content) {
-    console.log(content);
-  }
+  
   function dispAuftragDelete(delFalse) {
     setDeleteHandler(delFalse);
     props.onDelete(props.storageId);
@@ -77,14 +80,16 @@ function AuftragContent(props) {
       <div>
         <ContentDisplay
           items={props.contentObj2[props.storageId]}
+          recievedEdittedContent={edittedContent}
           deleteModal={deleteHandler}
           deleteHandlerDisp={dispAuftragDelete}
           cancelHandlerDisp={dispAuftragCancel}
+          
         />
       </div>
       <button
         className="edit_button"
-        onClick={() => clickHandler(props.storageId)}
+       
       >
         Bearbeiten
       </button>

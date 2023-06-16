@@ -78,7 +78,7 @@ function App() {
   }
 
   const onSaveContentObjHandler = (contentArray) => {
-    newContentObj[aufgabeContententId].push(contentArray);
+    newContentObj[aufgabeContententId].unshift(contentArray);
     let ca = JSON.parse(localStorage.getItem("contentObj44"));
     ca[aufgabeContententId].push(contentArray);
     localStorage.setItem("contentObj44", JSON.stringify(ca));
