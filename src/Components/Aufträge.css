@@ -2,9 +2,7 @@
 
 
 .auftragBox {
-  /* display: flex;
-  flex-wrap: wrap; */
-  /* justify-content: space-around; */
+  
   background-color: rgb(254, 255, 255);
   list-style: none;
   padding: 1rem;
@@ -34,8 +32,8 @@
 }
 
 .kundeButton {
-margin-left: 5rem;
-  font-size: 1rem;
+margin-left: 12rem;
+  font-size: 1.1rem;
 }
 .kundeButton_highPriority {
  margin-left: 5rem;
@@ -49,6 +47,23 @@ margin-left: 5rem;
   font-size: 1.2rem;
   margin-bottom: .8rem;
 }
+
+.edit_button:hover {
+  background-color: #1c41fa;
+  border-color: yellow;
+  color: white;
+}
+
+.edit_button {
+  clear: both;
+  background-color: #d4dad8;
+  padding: 0.2rem;
+
+  margin: .5rem 0 1rem 44rem;
+  font-size: 0.5rem;
+  border-radius: 0.4rem;
+}
+
 
 
   
@@ -71,7 +86,7 @@ margin-left: 5rem;
 
   .kundeButton {
     font-size: 2rem;
-    margin: 0;
+    margin: 1rem;
     
   }
   .kundeButton_highPriority {
@@ -83,6 +98,10 @@ margin-left: 5rem;
    
     font-size: 2rem;
     
+  }
+  .edit_button {
+    margin: 1rem 0 0.2rem 42rem;
+    font-size: .9rem;
   }
 
 }

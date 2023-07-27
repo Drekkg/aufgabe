@@ -1,12 +1,13 @@
-import React, { useState, Fragment, } from "react";
+import React, { useState, Fragment } from "react";
 import DeleteModal from "./DeleteModal";
 import "./ContentDisplay.css";
 
 function ContentDisplay(props) {
-  
-
   const [dispEditContent, setDispEditContent] = useState(false);
-  const [edittedContent, setEdittedContent] = useState();
+  const [edittedContent, setEdittedContent] = useState("");
+  const [editContentId, setEditContentId] = useState();
+  const [editContentUser, setEditContentUser] = useState();
+  const [editContentDate, setEditContentDate] = useState();
 
   if (props.items === undefined) {
     var items = [];
@@ -20,65 +21,83 @@ function ContentDisplay(props) {
   function cancelAuftrag(delFalse) {
     props.cancelHandlerDisp(delFalse);
   }
+
   const submitHandler = (event) => {
-   
-    props.recievedEdittedContent(edittedContent);
+    event.preventDefault();
+    if (edittedContent.trim().length === 0) {
+      
+      return;
+    }
+
+    const contentArray = {
+      id: editContentId,
+      date: editContentDate,
+      content: edittedContent,
+      user: editContentUser,
+    };
+    props.recievedEdittedContent(contentArray);
 
     setDispEditContent(false);
     setEdittedContent();
-    
   };
 
-  const editContentHandler = (id) => {
-    setDispEditContent(true);
-    console.log("id" + id)
+  const editContentHandler = (id, user, date) => {
+    setDispEditContent(!dispEditContent);
+    setEditContentId(id);
+    setEditContentUser(user);
+    setEditContentDate(date);
   };
 
   const onChangeHandler = (event) => {
-setEdittedContent(event.target.value)
-
+    setEdittedContent(event.target.value);
+    console.log(event.target.value)
   };
 
   return (
     <Fragment>
       <div className="content__container">
-        {!dispEditContent && (
-          <ul>
-            {items.map((data) => (
-              <li key={data.id}>
-                <div className="content__container__color">
-                  <div>
-                    <button onClick={editContentHandler(data.id)}>
-                      <b>{data.user}</b>
-                    </button>
-                  </div>
-                  {data.date}: {data.content}
+        <ul>
+          {items.map((data) => (
+            <li key={data.id}>
+              <div className="content__container__color">
+                <div>
+                  <button
+                    onClick={() =>
+                      editContentHandler(data.id, data.user, data.date)
+                    }
+                  >
+                    <b>{data.user}</b>
+                  </button>
                 </div>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {dispEditContent && (
-          <ul>
-            {items.map((data) => (
-
-              <li key={data.id}>
-                <div
-                  className="content__container__color"
-                  
-                >
+                {dispEditContent && editContentId === data.id ? (
+                  <form onSubmit={submitHandler}>
+                    {data.date}:
+                    {
+                      <input
+                        defaultValue={data.content}
+                        onChange={onChangeHandler}
+                        size={data.content.length + 20}
+                      />
+                    }
+                  </form>
+                ) : (
                   <div>
-                  <button onClick={submitHandler}  >
-                      <b>{data.user}</b>
-                    </button>
+                    {data.date}: {data.content}
                   </div>
-                  <input defaultValue={data.content} onChange={onChangeHandler} />
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+                )}
+                {/* {dispEditContent && editContentId === data.id && (
+                  <form onSubmit={submitHandler}>
+                    <input
+                      defaultValue={data.content}
+                      onChange={onChangeHandler}
+                      size={data.content.length + 20}
+                    />
+                  </form>
+                )} */}
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
       <DeleteModal
         deleteHandlerModal={props.deleteModal}

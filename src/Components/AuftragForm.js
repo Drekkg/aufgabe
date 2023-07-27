@@ -9,6 +9,7 @@ const [enteredDatum, setEnteredDatum] = useState('');
 const [enteredSachbearbeiter, setEnteredSachbearbeiter] = useState('');
 const [enteredAuftragNummer, setEnteredAuftragNummer] = useState(''); 
 const [enteredPriority, setEnteredPriority] = useState(false);
+const [checked, setchecked] = useState(false);
 
 const kundeChangeHandler = (event) => {
   setEnteredKunde(event.target.value);
@@ -29,11 +30,10 @@ const auftragNummerHandler =(event) => {
   setEnteredAuftragNummer(event.target.value);
 }
 
-const priorityHandler = (event) => {
-  if(event.target.value === "true"){
-    setEnteredPriority(true);
+const priorityHandler = () => {
+ setchecked(!checked);
   }
-}
+
 
 
 
@@ -47,7 +47,7 @@ const submitHandler = (event) => {
     datum: enteredDatum,
     sachbearbeiter: enteredSachbearbeiter,
     content: enteredAuftragNummer,
-    priority: enteredPriority,
+    priority: checked,
   
     
   };
@@ -94,7 +94,7 @@ const submitHandler = (event) => {
 
         <div>
           <label>Priorität: Hoch 
-          <input type="checkbox"  value="true" onChange={priorityHandler}/>
+          <input type="checkbox"  value={checked} onChange={priorityHandler}/>
           </label>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./AddAuftrag.css";
 import AuftragForm from "./AuftragForm";
 
+
 function AddAuftrag(props) {
   const [newAuftragForm, setNewAuftragForm] = useState(false);
 
@@ -32,6 +33,7 @@ function AddAuftrag(props) {
     
   return (
     <div className="buttonBox">
+    
       {newAuftragForm && (
         <div>
           <AuftragForm onSaveAuftragData={onSaveAuftragDataHandler} />
