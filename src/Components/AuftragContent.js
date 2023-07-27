@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import ContentDisplay from "./ContentDisplay";
 import "./AuftragContent.css";
+import FotoUploader from "./Foto/Fotouploader";
 
 function AuftragContent(props) {
-
-  const [content, setContent] = useState();
+  const [content, setContent] = useState("");
   const [deleteHandler, setDeleteHandler] = useState(false);
+  const [foto, setFoto] = useState([]);
 
-
+  
   const onChangeHandler = (event) => {
     setContent(event.target.value);
   };
-const edittedContent = (event) => {
-  
- setContent(event);
- console.log("content " +content)
-}
+  const edittedContent = (recievedEdittedContent) => {
+    props.contentObjHandlereditted(recievedEdittedContent);
+  };
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -53,13 +52,17 @@ const edittedContent = (event) => {
   function onDelete(id) {
     setDeleteHandler(true);
   }
-  
+
   function dispAuftragDelete(delFalse) {
     setDeleteHandler(delFalse);
     props.onDelete(props.storageId);
   }
+
   function dispAuftragCancel(delFalse) {
     setDeleteHandler(delFalse);
+  }
+  function editAuftragHandler(id) {
+    props.auftragEditHandler(id);
   }
 
   return (
@@ -70,12 +73,12 @@ const edittedContent = (event) => {
           <input
             size="80"
             type="text"
-           
             onChange={onChangeHandler}
             className="input__align_input"
           />
         </label>
       </form>
+      <FotoUploader />
 
       <div>
         <ContentDisplay
@@ -84,15 +87,9 @@ const edittedContent = (event) => {
           deleteModal={deleteHandler}
           deleteHandlerDisp={dispAuftragDelete}
           cancelHandlerDisp={dispAuftragCancel}
-          
         />
       </div>
-      <button
-        className="edit_button"
-       
-      >
-        Bearbeiten
-      </button>
+      
       <button
         className="deleteButton"
         onClick={() => onDelete(props.storageId)}
