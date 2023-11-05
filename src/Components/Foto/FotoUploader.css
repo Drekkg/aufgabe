@@ -1,0 +1,30 @@
+#Foto1 {
+    margin: 0.5rem;
+}
+
+.FotoLabel {
+    margin-top:.5rem;
+   
+}
+
+#FotoLabelButton {
+   
+  background-color: #00f2ff;
+  padding: 0.2rem;
+  margin: 1rem 0 0 0rem;
+  font-size: 0.51rem;
+ border: .1rem solid;
+  border-color: black;
+  border-radius: 6rem;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}

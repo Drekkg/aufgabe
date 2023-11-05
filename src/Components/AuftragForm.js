@@ -37,7 +37,6 @@ const priorityHandler = () => {
 
 
 
-
 const submitHandler = (event) => {
   event.preventDefault();
 
@@ -48,6 +47,7 @@ const submitHandler = (event) => {
     sachbearbeiter: enteredSachbearbeiter,
     content: enteredAuftragNummer,
     priority: checked,
+    erledigt: false,
   
     
   };
@@ -65,7 +65,7 @@ const submitHandler = (event) => {
 }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form className="form" onSubmit={submitHandler} >
       <div className="new-auftrag__controls">
         <div className="new-auftrag__control label">
           <label>Kunde </label>
@@ -94,7 +94,8 @@ const submitHandler = (event) => {
 
         <div>
           <label>Priorität: Hoch 
-          <input type="checkbox"  value={checked} onChange={priorityHandler}/>
+          <input type="checkbox"  value={checked}
+          onClick={priorityHandler} />
           </label>
         </div>
 
@@ -104,6 +105,9 @@ const submitHandler = (event) => {
       <div>
         <button className="buttonStyle" type="submit">Erstellen</button>
       </div>
+      <button className="buttonStyle" onClick={props.cancelForm}>
+            Cancel
+          </button>
     </form>
   );
 }

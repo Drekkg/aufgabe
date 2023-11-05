@@ -1,22 +1,27 @@
-import React, {useState} from "react";
+// import React, {useState} from "react";
+// import "./FotoUploader.css";
 
-function FotoUploader(props) {
+// function FotoUploader(props) {
 
-    const [foto, setFoto] = useState([]);
+//     const [foto, setFoto] = useState([]);
 
-    function fotoUploadHandler(e) {
-        console.log(e.target.files);
-        setFoto((prev) => [...prev, URL.createObjectURL(e.target.files[0])]);
-      }
+//     function fotoUploadHandler(e) {
+//       if(e.target.files.length !== 0){
+       
+//         setFoto((prev) => [...prev, URL.createObjectURL(e.target.files[0])]);
+//       }
+//     }
     
-return (
-<div>
-        <label>Foto Upload:</label>
-        <input type="file" onChange={fotoUploadHandler} multiple/>
-        {foto.map((x) => (
-          <img src={x} width="60rem" height="60rem" alt=""/>
-        ))}
-      </div>
-)
-}
-export default FotoUploader;
+// return (
+// <div className="FotoLabel">
+//         <label className="custom-file-upload"> Foto Upload
+//         <input id="FotoLabelButton" type="file" onChange={fotoUploadHandler} multiple/>
+//         {foto.map((x) => (
+//           <img src={x} id="Foto1" width="60rem" height="60rem" alt="" key={Math.random()}/>
+//         ))}
+       
+//         </label>
+//       </div>
+// )           
+// }
+// export default FotoUploader;

@@ -6,12 +6,34 @@
     /* align-self: center; */
     
 }
-
+.contentBox {
+    border-radius: 1rem;
+}
 .content__container__color {
+    list-style: none;
     margin-top: .5rem;
     width: 41.6rem;
     overflow-wrap: break-word;
     padding: .4rem;
-    background-color: rgba(191, 200, 206, 0.405);
+    background-color: rgba(238 246 246 / 92%);
+    border-radius: .5rem;
+    
+}
+.content__container__color:nth-of-type(2n) {
+    margin-top: .5rem;
+    width: 41.6rem;
+    overflow-wrap: break-word;
+    padding: .4rem;
+    background-color: rgb(255, 254, 254);
+    border-radius: .5rem;
+   
 }
 
+@media (max-width: 600px) {
+    button {
+        font-size: 1.5rem;
+    }
+    input {
+        font-size: 1.5rem;
+    }
+}

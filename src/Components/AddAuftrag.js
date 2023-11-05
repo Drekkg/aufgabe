@@ -4,10 +4,12 @@ import AuftragForm from "./AuftragForm";
 
 
 function AddAuftrag(props) {
-  const [newAuftragForm, setNewAuftragForm] = useState(false);
+  const [newAuftragForm, setNewAuftragForm] = useState();
+
 
   function dispNewAuftragHandler() {
     setNewAuftragForm(true);
+    
   }
 
   function dispCancelHandler() {
@@ -32,20 +34,22 @@ function AddAuftrag(props) {
   };
     
   return (
-    <div className="buttonBox">
+    <div>
     
       {newAuftragForm && (
-        <div>
-          <AuftragForm onSaveAuftragData={onSaveAuftragDataHandler} />
-          <button className="buttonStyle" onClick={dispCancelHandler}>
-            Cancel
-          </button>
+        <div className="buttonBox">
+          <AuftragForm onSaveAuftragData={onSaveAuftragDataHandler}
+          cancelForm={dispCancelHandler} />
+          
         </div>
       )}
       {!newAuftragForm && (
+        <div>
         <button className="buttonStyle" onClick={dispNewAuftragHandler}>
           Auftrag erstellen
         </button>
+        
+        </div>
       )}
     </div>
   );

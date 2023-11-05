@@ -1,19 +1,40 @@
+#topMargin {
+  padding: 5.5rem;
+}
 
+.ul_align {
+  padding-inline-start: 0px;
+}
 
+.main_auftrag_box {
+  background-color: aqua;
+  margin-top: 20rem;
+}
 
 .auftragBox {
-  
-  background-color: rgb(254, 255, 255);
+  background-color: #f5f3f4;
   list-style: none;
   padding: 1rem;
   width: 48rem;
   margin: auto;
-  
+
   border: 2px solid;
   box-shadow: 5px 8px 4px #000000;
   border-radius: 20px;
   margin-top: 0.6rem;
- 
+}
+
+.auftragBox:nth-of-type(2n) {
+  background-color: #f5f3f4b2;
+  list-style: none;
+  padding: 1rem;
+  width: 48rem;
+  margin: auto;
+
+  border: 2px solid;
+  box-shadow: 5px 8px 4px #000000;
+  border-radius: 20px;
+  margin-top: 0.6rem;
 }
 .auftragBox__highPriority {
   /* display: flex;
@@ -28,15 +49,20 @@
   box-shadow: 5px 8px 4px #000000;
   border-radius: 20px;
   margin-top: 0.6rem;
-  
 }
 
 .kundeButton {
-margin-left: 12rem;
+  margin-left: 12rem;
   font-size: 1.1rem;
+  border-radius: 8px;
+  transition: 1s;
+}
+.kundeButton:hover {
+  background-color: #1c41fa;
+  color: aliceblue;
 }
 .kundeButton_highPriority {
- margin-left: 5rem;
+  margin-left: 5rem;
   font-size: 1rem;
 }
 .highPriority {
@@ -45,7 +71,7 @@ margin-left: 12rem;
   font-style: italic;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
 .edit_button:hover {
@@ -59,50 +85,56 @@ margin-left: 12rem;
   background-color: #d4dad8;
   padding: 0.2rem;
 
-  margin: .5rem 0 1rem 44rem;
+  margin: 0.5rem 0 1rem 44rem;
+  font-size: 0.5rem;
+  border-radius: 0.4rem;
+}
+.erledigt_button:hover {
+  background-color: #1c41fa;
+  border-color: yellow;
+  color: white;
+}
+
+.erledigt_button {
+  clear: both;
+  background-color: #d4dad8;
+  padding: 0.2rem;
+
   font-size: 0.5rem;
   border-radius: 0.4rem;
 }
 
+input {
+  margin: 0.4rem;
+}
 
-
-  
-  @media(max-width: 600px) {
+@media (max-width: 600px) {
   .auftragBox {
-    clear:both;
+    clear: both;
     flex-direction: column;
     font-size: 2.2rem;
-    margin-left: -2rem;   
-     
   }
 
   .auftragBox__highPriority {
-    clear:both;
+    clear: both;
     flex-direction: column;
     font-size: 2rem;
-    margin-left: -2rem;   
+    margin-left: -2rem;
   }
-
 
   .kundeButton {
     font-size: 2rem;
     margin: 1rem;
-    
   }
   .kundeButton_highPriority {
     font-size: 2.2rem;
     margin: 0;
-    
   }
   .highPriority {
-   
     font-size: 2rem;
-    
   }
   .edit_button {
     margin: 1rem 0 0.2rem 42rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
-
 }
-  

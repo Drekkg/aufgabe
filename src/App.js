@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from "react";
 import "./App.css";
-// import cold_logo from "./cold_logo.jpg";
+
 import AddAuftrag from "./Components/AddAuftrag";
 import Aufträge from "./Components/Aufträge";
+import FilterBox from "./Components/FilterBox";
 
 function App() {
   // const DUMMY_DATA = [
@@ -39,6 +40,7 @@ function App() {
   //     content: "Robin",
   //   },
   // ];
+
   var contentObj = JSON.parse(localStorage.getItem("contentObj44")) || {};
 
   let aufgabeContentId = "";
@@ -47,6 +49,8 @@ function App() {
     JSON.parse(localStorage.getItem("aufgabe")) || []
   );
 
+  const [filteredState, setFilteredState] = useState(auftragsData);
+
   const [newContentObj, setNewContentObj] = useState(contentObj);
 
   const onAddAuftragDataHandler = (auftragData) => {
@@ -54,23 +58,65 @@ function App() {
       return { ...prev, [auftragData.id]: [] };
     });
 
+    // setAuftragsData((prevItem) => {
+    //   return [auftragData, ...prevItem];
+    // });
+    // setAuftragsData((prevItem) => {
+    //   return [auftragData, ...prevItem];
+
+    // });
     setAuftragsData((prevItem) => {
       return [auftragData, ...prevItem];
     });
+
+    updateFilteredState(auftragData);
+
+    // setFilteredState((prevItem) => {
+    //   return [auftragData, ...prevItem]
+    // });
   };
 
+  // function filterArray(event) {
+  //   // console.log(event.target.value)
+  //   const kundeSearch = event.target.value;
+  //   const strippedKundeSearch = kundeSearch.replaceAll(" ", "");
+  //   console.log(strippedKundeSearch);
+  //   const filteredAuftrag = auftragsData.filter((kunden) =>
+  //     kunden.kunde
+  //       .toLowerCase()
+  //       .replaceAll(" ", "")
+  //       .includes(strippedKundeSearch.toLowerCase())
+  //   );
+  //   setFilteredState(filteredAuftrag);
+  // }
+  // function filterArrayAufgabe(event) {
+  //   // console.log(event.target.value)
+  //   const aufgabeSearch = event.target.value;
+  //   const strippedAufgabeSearch = aufgabeSearch.replaceAll(" ", "");
+
+  //   const filteredAuftrag = auftragsData.filter((projekts) =>
+  //     projekts.projekt
+  //       .toLowerCase()
+  //       .replaceAll(" ", "")
+  //       .includes(strippedAufgabeSearch.toLowerCase())
+  //   );
+  //   setFilteredState(filteredAuftrag);
+  // }
+
   function onDeleteHandler(id) {
+    var deleteContentArray = JSON.parse(localStorage.getItem("contentObj44"));
+    // console.log(deleteContentArray[id]);
+    delete deleteContentArray[id];
+    localStorage.setItem("contentObj44", JSON.stringify(deleteContentArray));
+    setNewContentObj(deleteContentArray);
+
     var deleteFromArray = JSON.parse(localStorage.getItem("aufgabe"));
     const indx = deleteFromArray.findIndex((data) => data.id === id);
     deleteFromArray.splice(indx, 1);
     localStorage.setItem("aufgabe", JSON.stringify(deleteFromArray));
 
-    var deleteContentArray = JSON.parse(localStorage.getItem("contentObj44"));
-    console.log(deleteContentArray[id]);
-    delete deleteContentArray[id];
-    localStorage.setItem("contentObj44", JSON.stringify(deleteContentArray));
-    setNewContentObj(deleteContentArray);
-    setAuftragsData(deleteFromArray);
+    // setAuftragsData(deleteFromArray);
+    setFilteredState(deleteFromArray);
   }
 
   // console.log("contentObj " + JSON.stringify(newContentObj[auftragsData[0].id]));
@@ -88,7 +134,7 @@ function App() {
     const editStorage = objToStorage.find((obj) => obj.id === objId);
     editStorage.content = recievedEdittedContent.content;
     localStorage.setItem("contentObj44", JSON.stringify(ca));
-   // console.log(JSON.stringify(editStorage));
+    // console.log(JSON.stringify(editStorage));
   };
 
   const onSaveContentObjHandler = (contentArray) => {
@@ -102,38 +148,59 @@ function App() {
   function selectedIdHandler(id) {
     return (aufgabeContentId = id);
   }
-  function editAuftragHandler(edittedAuftrag){
-
-    const indx = auftragsData.findIndex(x => x.id === edittedAuftrag.id);
+  function editAuftragHandler(edittedAuftrag) {
+    const indx = auftragsData.findIndex((x) => x.id === edittedAuftrag.id);
     auftragsData[indx] = edittedAuftrag;
     const editAuftrag = JSON.parse(localStorage.getItem("aufgabe"));
     editAuftrag[indx] = edittedAuftrag;
     localStorage.setItem("aufgabe", JSON.stringify(editAuftrag));
-    
-    console.log("in App " + JSON.stringify(editAuftrag))
+  }
+  const [addAuftrag, setAddAuftrag] = useState(false);
+  function addAuftragHandler() {
+    addAuftrag = true;
+  }
+  function filterAuftrag(filteredAuftrag) {
+    setFilteredState(filteredAuftrag);
+  }
+
+  function resetFilter() {
+    setAuftragsData(JSON.parse(localStorage.getItem("aufgabe")) || []);
+  }
+  function updateFilteredState(auftragData){
+setFilteredState((prevItem) => {
+      return [auftragData, ...prevItem]
+    });
   }
 
   return (
-    <Fragment>
+    <div className="bodyStyle">
       <div className="App">
         <h1>Aufgabe Liste</h1>
-      </div>
-      <div>
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler} />
+        <div>
+        <FilterBox
+          toFilter={auftragsData}
+          fromFilter={filterAuftrag}
+          clearFilter={resetFilter}
+          />
+          </div>
       </div>
+      
+      {/* <div>
+        <AddAuftrag onAddAuftrag={onAddAuftragDataHandler}/>
+      </div> */}
       <div>
         <Aufträge
-          items={auftragsData}
+          items={filteredState}
           onSaveContentObj={onSaveContentObjHandler}
           onSaveEditContentObj={onSaveEditContentObjHandler}
           selectedId={selectedIdHandler}
           enteredContentObj={newContentObj}
-          onDelete={onDeleteHandler}
+          onPassedDelete={onDeleteHandler}
           editAuftrag={editAuftragHandler}
         />
       </div>
-      b
-    </Fragment>
+    </div>
   );
 }
 

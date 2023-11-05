@@ -3,6 +3,7 @@ import "./ContentDisplay.js";
 import "./DeleteModal.css";
 
 function DeleteModal(props) {
+  
   function deleteAuftrag(delFalse) {
     delFalse = false;
     props.deleteHandlerDisp(delFalse);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Aufträge.css";
 import AuftragContent from "./AuftragContent";
+import DeleteModal from "./DeleteModal";
+import Erledigt from "./Erledigt";
 
 function Aufträge(props) {
-  function editAuftragHandler(id) {
-   
-  }
+  function editAuftragHandler(id) {}
 
   const [dispAufträgeContent, setDispAufträgeContent] = useState();
   const [dispContentAuftrag, setDispContentAuftrag] = useState(false);
@@ -16,36 +16,40 @@ function Aufträge(props) {
   const [editAuftragKunde, setEditAuftragKunde] = useState("");
   const [editAuftragAufgabe, setEditAuftragAufgabe] = useState("");
   const [editAuftragNumber, setEditAuftragNumber] = useState("");
-  const [editAuftragSachbearbeiter, setEditAuftragSachbearbeiter] = useState("");
+  const [editAuftragSachbearbeiter, setEditAuftragSachbearbeiter] =
+    useState("");
   const [checked, setChecked] = useState();
+  const [deleteHandler, setDeleteHandler] = useState(false);
+  const [erledigtChecked, setErledigtChecked] = useState();
 
   function auftragBossHandler(
-    
     id,
     priority,
     datum,
     kunde,
     projekt,
     sachbearbeiter,
+    erledigt,
     content
   ) {
     if (editAuftrag) {
       submitHandler();
+
       return;
     } else {
       setEditAuftrag(!editAuftrag);
-    
-    setEditAuftragId(id);
-    setChecked(priority);
-    setEditAuftragDate(datum);
-    setEditAuftragKunde(kunde);
-    setEditAuftragAufgabe(projekt);
-    setEditAuftragSachbearbeiter(sachbearbeiter);
-    setEditAuftragNumber(content);
+
+      setEditAuftragId(id);
+      setChecked(priority);
+      setEditAuftragDate(datum);
+      setEditAuftragKunde(kunde);
+      setEditAuftragAufgabe(projekt);
+      setEditAuftragSachbearbeiter(sachbearbeiter);
+      setEditAuftragNumber(content);
+      setErledigtChecked(erledigt);
+    }
   }
 
-}
-  
   function contentDisplay() {
     setDispContentAuftrag(true);
   }
@@ -67,7 +71,18 @@ function Aufträge(props) {
     </b>
   );
 
-  function submitHandler(event) {
+  function onDelete(id) {
+    setDeleteHandler(true);
+  }
+  function deleteAuftragState(delFalse) {
+    setDeleteHandler(delFalse);
+    props.onPassedDelete(editAuftragId);
+  }
+  function cancelAuftragState(delFalse) {
+    setDeleteHandler(delFalse);
+  }
+
+  function submitHandler() {
     // event.preventDefault();
     setEditAuftrag(!editAuftrag);
     const edittedAuftragData = {
@@ -77,10 +92,10 @@ function Aufträge(props) {
       sachbearbeiter: editAuftragSachbearbeiter,
       content: editAuftragNumber,
       priority: checked,
+      erledigt: erledigtChecked,
       id: editAuftragId,
     };
-props.editAuftrag(edittedAuftragData);
-    
+    props.editAuftrag(edittedAuftragData);
   }
 
   function editDateHandler(event) {
@@ -89,11 +104,9 @@ props.editAuftrag(edittedAuftragData);
   }
   function editKundeHandler(event) {
     setEditAuftragKunde(event.target.value);
-    console.log();
   }
   function editAufgabeHandler(event) {
     setEditAuftragAufgabe(event.target.value);
-    console.log(event.target.value);
   }
   function editNumberHandler(event) {
     setEditAuftragNumber(event.target.value);
@@ -103,23 +116,27 @@ props.editAuftrag(edittedAuftragData);
   }
   function priorityHandler() {
     setChecked(!checked);
-    console.log(checked);
+  }
+  function erledigtHandler() {
+    setErledigtChecked(!erledigtChecked);
+    console.log("check");
   }
 
   return (
-    <div>
-      <ul>
+    <div id="topMargin">
+      <ul className="ul_align">
         {props.items.map((data) => (
-          <li
-            className={
-              data.priority ? "auftragBox__highPriority" : "auftragBox"
-            }
-            key={data.id}
-          >
+          <li className="auftragBox" key={data.id}>
             {editAuftrag && data.id === editAuftragId ? (
-              <form type="submit" onSubmit={submitHandler}>
+              <form type="submit">
                 <div>
-                <button onClick={auftragBossHandler} className="edit_button">Bearbeiten</button>
+                  <button
+                    onClick={auftragBossHandler}
+                    className="edit_button"
+                    type="button"
+                  >
+                    Bearbeiten
+                  </button>
                   <label>
                     Priorität: Hoch
                     <input
@@ -142,7 +159,6 @@ props.editAuftrag(edittedAuftragData);
                     type="text"
                     defaultValue={data.kunde}
                     onChange={editKundeHandler}
-                    
                   />
                 </div>
 
@@ -171,12 +187,29 @@ props.editAuftrag(edittedAuftragData);
                       onChange={editNumberHandler}
                     />
                   </div>
-                  
+                  <button
+                    type="button"
+                    className="deleteButton"
+                    onClick={() => onDelete()}
+                  >
+                    Auftrag löschen
+                  </button>
+
+                  <label>
+                    Erledigt:
+                    <input
+                      type="checkbox"
+                      className="erledigt_button"
+                      checked={erledigtChecked}
+                      onChange={erledigtHandler}
+                    />
+                  </label>
                 </div>
               </form>
             ) : (
-              <div>
-                 <button
+              <div className="auftrag_box">
+                <button
+                  type="button"
                   className="edit_button"
                   onClick={() => {
                     auftragBossHandler(
@@ -186,21 +219,31 @@ props.editAuftrag(edittedAuftragData);
                       data.kunde,
                       data.projekt,
                       data.sachbearbeiter,
+                      data.erledigt,
                       data.content
-                    );
-                  }}
+                      );
+                    }}
                 >
                   Bearbeiten
                 </button>
                 <div>
+                {data.erledigt ? <Erledigt/> : null}
+                </div>
+
+                    
+                <div>
                   <b></b>
                   {data.priority ? highPriority : null}
                 </div>
-              
 
                 <div>
                   {data.datum}
-                  <button key={data.id} className="kundeButton" onClick={() => dispContent(data.id)}>
+                  <button
+                    type="button"
+                    key={data.id}
+                    className="kundeButton"
+                    onClick={() => dispContent(data.id)}
+                  >
                     <b> Kunde: </b>
                     {data.kunde}
                   </button>
@@ -216,7 +259,6 @@ props.editAuftrag(edittedAuftragData);
                     <b>Auftragsnr: </b>
                     {data.content}
                   </div>
-                 
                 </div>
               </div>
             )}
@@ -230,11 +272,15 @@ props.editAuftrag(edittedAuftragData);
                   storageId={data.id}
                   dummyContentData={contentDataHandler}
                   contentObj2={props.enteredContentObj}
-                  onDelete={props.onDelete}
                   dispContentHandler={contentDisplay}
                   auftragEditHandler={editAuftragHandler}
                 />
               )}
+              <DeleteModal
+                deleteHandlerModal={deleteHandler}
+                deleteHandlerDisp={deleteAuftragState}
+                cancelHandlerDisp={cancelAuftragState}
+              />
             </div>
           </li>
         ))}

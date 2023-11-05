@@ -1,0 +1,42 @@
+
+
+.search_box_background {
+background-color: rgb(191, 193, 196);
+
+border-radius: 1rem;
+margin-left: 0rem;
+margin-top: 0rem;
+
+}
+
+.searchBox {
+  display: table-cell;
+  border-radius: .4rem;
+  margin-right: 1rem;
+  
+}
+
+.filter_button:hover {
+  background-color: #1c41fa;
+  border-color: yellow;
+  color: white;
+}
+
+.filter_button {
+  background-color: #d4dad8;
+  margin-top: 1rem;
+  padding: 0.1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 0.6rem;
+  height: 2rem;
+  width: 6rem;
+  box-shadow: 1rem;
+  box-shadow: 0px 2px;
+}
+
+.mag_glass {
+
+  margin-right: 0.2rem;
+}

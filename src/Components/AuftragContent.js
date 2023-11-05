@@ -5,9 +5,8 @@ import FotoUploader from "./Foto/Fotouploader";
 
 function AuftragContent(props) {
   const [content, setContent] = useState("");
-  const [deleteHandler, setDeleteHandler] = useState(false);
-  const [foto, setFoto] = useState([]);
-
+  // const [deleteHandler, setDeleteHandler] = useState(false);
+ 
   
   const onChangeHandler = (event) => {
     setContent(event.target.value);
@@ -49,18 +48,18 @@ function AuftragContent(props) {
     setContent("");
   };
 
-  function onDelete(id) {
-    setDeleteHandler(true);
-  }
+  // function onDelete(id) {
+  //   setDeleteHandler(true);
+  // }
 
-  function dispAuftragDelete(delFalse) {
-    setDeleteHandler(delFalse);
-    props.onDelete(props.storageId);
-  }
+  // function dispAuftragDelete(delFalse) {
+  //   setDeleteHandler(delFalse);
+  //   props.onDelete(props.storageId);
+  // }
 
-  function dispAuftragCancel(delFalse) {
-    setDeleteHandler(delFalse);
-  }
+  // function dispAuftragCancel(delFalse) {
+  //   setDeleteHandler(delFalse);
+  // }
   function editAuftragHandler(id) {
     props.auftragEditHandler(id);
   }
@@ -78,26 +77,26 @@ function AuftragContent(props) {
           />
         </label>
       </form>
-      <FotoUploader />
+      
 
       <div>
         <ContentDisplay
           items={props.contentObj2[props.storageId]}
           recievedEdittedContent={edittedContent}
-          deleteModal={deleteHandler}
-          deleteHandlerDisp={dispAuftragDelete}
-          cancelHandlerDisp={dispAuftragCancel}
+          // deleteModal={deleteHandler}
+          // deleteHandlerDisp={dispAuftragDelete}
+          // cancelHandlerDisp={dispAuftragCancel}
         />
       </div>
       
-      <button
+      {/* <button
         className="deleteButton"
         onClick={() => onDelete(props.storageId)}
       >
         Auftrag löschen
-      </button>
+      </button> */}
     </div>
   );
-}
+}   
 
 export default AuftragContent;

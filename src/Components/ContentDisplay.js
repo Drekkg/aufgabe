@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import DeleteModal from "./DeleteModal";
+// import DeleteModal from "./DeleteModal";
 import "./ContentDisplay.css";
 
 function ContentDisplay(props) {
@@ -15,12 +15,12 @@ function ContentDisplay(props) {
     items = props.items;
   }
 
-  function deleteAuftrag(delFalse) {
-    props.deleteHandlerDisp(delFalse);
-  }
-  function cancelAuftrag(delFalse) {
-    props.cancelHandlerDisp(delFalse);
-  }
+  // function deleteAuftrag(delFalse) {
+  //   props.deleteHandlerDisp(delFalse);
+  // }
+  // function cancelAuftrag(delFalse) {
+  //   props.cancelHandlerDisp(delFalse);
+  // }
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -58,8 +58,8 @@ function ContentDisplay(props) {
       <div className="content__container">
         <ul>
           {items.map((data) => (
-            <li key={data.id}>
-              <div className="content__container__color">
+            <li className="content__container__color" key={data.id}>
+              <div >
                 <div>
                   <button
                     onClick={() =>
@@ -81,7 +81,7 @@ function ContentDisplay(props) {
                     }
                   </form>
                 ) : (
-                  <div>
+                  <div className="contentBox">
                     {data.date}: {data.content}
                   </div>
                 )}
@@ -99,11 +99,11 @@ function ContentDisplay(props) {
           ))}
         </ul>
       </div>
-      <DeleteModal
+      {/* <DeleteModal
         deleteHandlerModal={props.deleteModal}
         deleteHandlerDisp={deleteAuftrag}
         cancelHandlerDisp={cancelAuftrag}
-      />
+      /> */}
     </Fragment>
   );
 }
