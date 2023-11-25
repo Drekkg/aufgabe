@@ -21,6 +21,7 @@ function Aufträge(props) {
   const [checked, setChecked] = useState();
   const [deleteHandler, setDeleteHandler] = useState(false);
   const [erledigtChecked, setErledigtChecked] = useState();
+  const [aufgabeTop, setAufgabeTop] = useState("marginTop");
 
   function auftragBossHandler(
     id,
@@ -122,8 +123,9 @@ function Aufträge(props) {
     console.log("check");
   }
 
+
   return (
-    <div id="topMargin">
+    <div className={aufgabeTop}>
       <ul className="ul_align">
         {props.items.map((data) => (
           <li className="auftragBox" key={data.id}>
@@ -137,7 +139,16 @@ function Aufträge(props) {
                   >
                     Bearbeiten
                   </button>
-                  <label>
+                  <label className="erledigt_button">
+                    Erledigt:
+                    <input
+                      type="checkbox"
+                      
+                      checked={erledigtChecked}
+                      onChange={erledigtHandler}
+                    />
+                  </label>
+                  <label className="priority_box">
                     Priorität: Hoch
                     <input
                       type="checkbox"
@@ -195,15 +206,7 @@ function Aufträge(props) {
                     Auftrag löschen
                   </button>
 
-                  <label>
-                    Erledigt:
-                    <input
-                      type="checkbox"
-                      className="erledigt_button"
-                      checked={erledigtChecked}
-                      onChange={erledigtHandler}
-                    />
-                  </label>
+                 
                 </div>
               </form>
             ) : (

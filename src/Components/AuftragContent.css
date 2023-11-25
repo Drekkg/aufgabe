@@ -16,8 +16,8 @@
   padding: 0.2rem;
   display: inline-block;
   margin: 1rem 0 0 42rem;
-  font-size: 0.51rem;
-  border-radius: 6rem;
+  font-size: 0.7rem;
+  border-radius: .4rem;
 }
 .deleteButton:hover {
   background-color: #fa1c1c;

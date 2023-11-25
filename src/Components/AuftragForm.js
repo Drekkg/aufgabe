@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import "./AuftragForm.css";
 
 function AuftragForm(props) {
@@ -8,7 +8,7 @@ const [enteredProjekt, setEnteredProjekt] = useState('');
 const [enteredDatum, setEnteredDatum] = useState('');
 const [enteredSachbearbeiter, setEnteredSachbearbeiter] = useState('');
 const [enteredAuftragNummer, setEnteredAuftragNummer] = useState(''); 
-const [enteredPriority, setEnteredPriority] = useState(false);
+// const [enteredPriority, setEnteredPriority] = useState(false);
 const [checked, setchecked] = useState(false);
 
 const kundeChangeHandler = (event) => {
@@ -58,7 +58,7 @@ const submitHandler = (event) => {
   setEnteredSachbearbeiter('');
   setEnteredKunde('');
   setEnteredAuftragNummer('');
-  setEnteredPriority(false);
+  // setEnteredPriority(false);
 
  
   

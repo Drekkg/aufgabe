@@ -1,5 +1,9 @@
-#topMargin {
-  padding: 5.5rem;
+.marginTop {
+  padding: 10rem 0;
+  
+}
+.space_top {
+  background-color: azure;
 }
 
 .ul_align {
@@ -55,7 +59,7 @@
   margin-left: 12rem;
   font-size: 1.1rem;
   border-radius: 8px;
-  transition: 1s;
+  
 }
 .kundeButton:hover {
   background-color: #1c41fa;
@@ -85,22 +89,33 @@
   background-color: #d4dad8;
   padding: 0.2rem;
 
-  margin: 0.5rem 0 1rem 44rem;
-  font-size: 0.5rem;
+  margin: 0.5rem 0 1rem 42rem;
+  /* font-size: 0.5rem; */
   border-radius: 0.4rem;
 }
-.erledigt_button:hover {
+
+.priority_box {
+  clear: both;
+  background-color: #d4dad8;
+  padding: 0.2rem;
+
+  font-size: 0.9rem;
+  border-radius: 0.4rem;
+}
+
+.erledigt_button:hover, .priority_box:hover {
   background-color: #1c41fa;
-  border-color: yellow;
+  border-color: yellow; 
   color: white;
 }
 
 .erledigt_button {
   clear: both;
   background-color: #d4dad8;
-  padding: 0.2rem;
+  margin: 0.5rem 0 1rem 42rem;
+  padding: 0.4rem;
 
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   border-radius: 0.4rem;
 }
 
@@ -113,6 +128,7 @@ input {
     clear: both;
     flex-direction: column;
     font-size: 2.2rem;
+    list-style: none;
   }
 
   .auftragBox__highPriority {

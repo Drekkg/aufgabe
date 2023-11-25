@@ -1,12 +1,19 @@
 .erledigt__style {
-        margin: 0;
-        color: rgb(29, 225, 120);
-        border: solid .3rem rgb(20, 244, 125);
-        transform: rotate(-20deg);
-        width: 7rem;
-        padding: .4rem;
-        border-radius: 10px;
-        box-shadow: .2rem .3rem 1rem  rgb(51, 61, 56);;
-       
-      
+  background-color: aliceblue;
+  margin:  0 2rem 1.5rem 2rem;
+  color: rgb(29, 225, 120);
+  border: solid 0.3rem rgb(20, 244, 125);
+  transform: rotate(-20deg);
+  width: 7rem;
+  padding: 0.4rem;
+  border-radius: 10px;
+  box-shadow: 0.2rem 0.3rem 1rem rgb(67, 90, 79);
+}
+
+@media (max-width: 600px) {
+  .erledigt__style {
+    font-size: 2rem;
+    
+  }
+ 
 }

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 import AddAuftrag from "./Components/AddAuftrag";
@@ -155,20 +155,23 @@ function App() {
     editAuftrag[indx] = edittedAuftrag;
     localStorage.setItem("aufgabe", JSON.stringify(editAuftrag));
   }
-  const [addAuftrag, setAddAuftrag] = useState(false);
-  function addAuftragHandler() {
-    addAuftrag = true;
-  }
+  // const [addAuftrag, setAddAuftrag] = useState(false);
+  // function addAuftragHandler() {
+  //   addAuftrag = true;
+  // }
   function filterAuftrag(filteredAuftrag) {
     setFilteredState(filteredAuftrag);
   }
+  const[aufgabePadding, setAufgabePadding] = useState(false);
 
   function resetFilter() {
-    setAuftragsData(JSON.parse(localStorage.getItem("aufgabe")) || []);
+    setFilteredState(JSON.parse(localStorage.getItem("aufgabe")) || []);
   }
-  function updateFilteredState(auftragData){
-setFilteredState((prevItem) => {
-      return [auftragData, ...prevItem]
+    
+
+  function updateFilteredState(auftragData) {
+    setFilteredState((prevItem) => {
+      return [auftragData, ...prevItem];
     });
   }
 
@@ -178,14 +181,14 @@ setFilteredState((prevItem) => {
         <h1>Aufgabe Liste</h1>
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler} />
         <div>
-        <FilterBox
-          toFilter={auftragsData}
-          fromFilter={filterAuftrag}
-          clearFilter={resetFilter}
+          <FilterBox
+            toFilter={auftragsData}
+            fromFilter={filterAuftrag}
+            clearFilter={resetFilter}
           />
-          </div>
+        </div>
       </div>
-      
+
       {/* <div>
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler}/>
       </div> */}
@@ -198,6 +201,7 @@ setFilteredState((prevItem) => {
           enteredContentObj={newContentObj}
           onPassedDelete={onDeleteHandler}
           editAuftrag={editAuftragHandler}
+          paddingAufgabe={aufgabePadding}
         />
       </div>
     </div>

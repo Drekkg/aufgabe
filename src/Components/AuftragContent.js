@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContentDisplay from "./ContentDisplay";
 import "./AuftragContent.css";
-import FotoUploader from "./Foto/Fotouploader";
+
 
 function AuftragContent(props) {
   const [content, setContent] = useState("");
@@ -60,9 +60,9 @@ function AuftragContent(props) {
   // function dispAuftragCancel(delFalse) {
   //   setDeleteHandler(delFalse);
   // }
-  function editAuftragHandler(id) {
-    props.auftragEditHandler(id);
-  }
+  // function editAuftragHandler(id) {
+  //   props.auftragEditHandler(id);
+  // }
 
   return (
     <div className="input__align">

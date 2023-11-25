@@ -10,7 +10,7 @@ function FilterBox(props) {
       setDisplayFilter(true);
     } else {
       setDisplayFilter(false);
-      props.clearFilter();
+      props.clearFilter();   
     }
   }
   function filterArray(event) {
@@ -28,6 +28,7 @@ function FilterBox(props) {
   function filterArrayAufgabe(event) {
     const aufgabeSearch = event.target.value;
     const strippedAufgabeSearch = aufgabeSearch.replaceAll(" ", "");
+    console.log(event);
 
     const filteredAuftrag = props.toFilter.filter((projekts) =>
       projekts.projekt
@@ -49,8 +50,9 @@ function FilterBox(props) {
           <img
             className="mag_glass"
             src={mag_glass}
-            height="15rem"
-            width="15rem"
+            alt="Search"
+            height="16rem"
+            width="18rem"
           />
           Filter
         </button>
