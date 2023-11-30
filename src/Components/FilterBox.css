@@ -1,15 +1,16 @@
 .search_box_background {
   background-color: rgb(191, 193, 196);
-
+  padding-top: 0.1rem;
   border-radius: 1rem;
   margin-left: 0rem;
-  margin-top: 0rem;
+  margin-top: 0rem; 
 }
 
 .searchBox {
   display: table-cell;
   border-radius: 0.4rem;
   margin-right: 1rem;
+  
 }
 
 .filter_button:hover {
