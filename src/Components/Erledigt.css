@@ -1,11 +1,11 @@
 .erledigt__style {
   background-color: aliceblue;
-  margin:  0 2rem 1.5rem 2rem;
+  margin:  0 2rem 2rem 2rem;
   color: rgb(29, 225, 120);
   border: solid 0.3rem rgb(20, 244, 125);
   transform: rotate(-20deg);
   width: 7rem;
-  padding: 0.4rem;
+  padding: .4rem 2rem;
   border-radius: 10px;
   box-shadow: 0.2rem 0.3rem 1rem rgb(67, 90, 79);
 }
