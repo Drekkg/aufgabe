@@ -178,7 +178,7 @@ function App() {
   return (
     <div className="bodyStyle">
       <div className="App">
-        <h1>Aufgabe Liste</h1>
+        <h1 className="heading-style">Aufgabe Liste</h1>
         <AddAuftrag onAddAuftrag={onAddAuftragDataHandler} />
         <div>
           <FilterBox
